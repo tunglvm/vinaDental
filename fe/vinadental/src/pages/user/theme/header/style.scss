@@ -1,0 +1,16 @@
+@use "sass:map";
+
+.header__top {
+    background-color: gray;
+}
+
+.header__top_right {
+    display: flex;
+    justify-content: end;
+
+    ul {
+        display: flex;
+        column-gap: 10px;
+        list-style: none;
+    }
+}

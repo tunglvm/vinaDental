@@ -21,8 +21,8 @@ const renderUserRouter = () => {
     ];
 
     return (
-        <Masterlayout> //Wrap all pages inside the Masterlayout component.
-            <Routes> //Routes component manages all Route components.
+        <Masterlayout> 
+            <Routes> 
                 {
                     userRouter.map((item, key) => ( //Duyệt qua mảng userRouter và tạo các Route.
                         <Route key = {key} path = {item.path} element = {item.component} />
