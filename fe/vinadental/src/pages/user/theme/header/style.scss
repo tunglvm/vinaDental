@@ -2,7 +2,7 @@
 @import "../../../../style/pages/theme";
 
 .header__top {
-    background: map.get($theme-colors, "top-header-color");
+    background: map.get($theme-colors, "gradient-bg");
 }
 
 .header__top_right {

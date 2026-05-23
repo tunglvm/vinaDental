@@ -3,5 +3,6 @@ export const ROUTER = {
     USER: { //nested object that contains routes related to users.
         HOME: "",
         PROFILE: "profile",
+        LOGIN: "login",
     },
 }

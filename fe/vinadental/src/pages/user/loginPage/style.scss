@@ -1,0 +1,63 @@
+$gradient-color: linear-gradient(to right, #07829F 0%, #0069A5 100%);
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: $gradient-color; // Màu nền đồng bộ
+    font-family: sans-serif;
+
+    .login-box {
+        background: #fff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+
+        .login-header {
+            margin-bottom: 30px;
+            h2 { color: #07829F; font-size: 32px; margin-bottom: 5px; }
+            p { color: #666; font-size: 14px; }
+        }
+
+        form {
+            .input-group {
+                text-align: left;
+                margin-bottom: 20px;
+                label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+                input {
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    outline: none;
+                    box-sizing: border-box;
+                    &:focus { border-color: #07829F; }
+                }
+            }
+            .btn-login {
+                width: 100%;
+                padding: 14px;
+                background: $gradient-color;
+                border: none;
+                color: #fff;
+                font-weight: bold;
+                font-size: 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: opacity 0.3s;
+                &:hover { opacity: 0.9; }
+            }
+        }
+
+        .login-footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #888;
+            span { color: #0069A5; cursor: pointer; font-weight: bold; }
+        }
+    }
+}

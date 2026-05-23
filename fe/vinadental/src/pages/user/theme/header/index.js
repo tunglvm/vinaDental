@@ -5,6 +5,8 @@ import { FaFacebook } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 
+import { ROUTER } from "../../../../utils/router";
+
 const Header = () => {
     return (
         <div className="header__top">
@@ -24,10 +26,10 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to = {""}>
+                                <Link to = {ROUTER.USER.LOGIN}>
                                     <FaUser />
                                 </Link>
-                                <Link to = {""}>
+                                <Link to = {ROUTER.USER.LOGIN}>
                                     <span>Đăng nhập</span>
                                 </Link>
                             </li>

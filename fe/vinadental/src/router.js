@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Masterlayout from "./pages/user/theme/masterlayout";
 import ProfilePage from "./pages/user/profilePage";
 import HomePage from "./pages/user/homePage";
+import LoginPage from "./pages/user/loginPage";
 
 //function to render user routes.
 const renderUserRouter = () => {
@@ -18,6 +19,11 @@ const renderUserRouter = () => {
             path: ROUTER.USER.PROFILE,
             component: <ProfilePage/>
         },
+        {
+            path: ROUTER.USER.LOGIN,
+            component: <LoginPage/>
+        },
+        
     ];
 
     return (
