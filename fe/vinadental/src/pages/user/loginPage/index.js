@@ -1,95 +1,99 @@
-// 1. IMPORT CÁC THƯ VIỆN CẦN THIẾT
-// - memo: Giúp tối ưu hiệu năng, tránh re-render (tải lại component) lãng phí khi không có sự thay đổi.
-// - useState: Hook cơ bản của React giúp tạo và quản lý các trạng thái (state) dữ liệu ngay trong component.
 import { memo, useState } from "react";
-
-// - useNavigate: Hook của thư viện 'react-router-dom', dùng để điều hướng người dùng 
-//   chuyển sang trang khác (ví dụ: về trang chủ sau khi đăng nhập thành công) mà không cần tải lại toàn bộ trang web.
-import { useNavigate } from "react-router-dom";
-
-// - Import file giao diện Scss riêng cho trang Login này
+import { useNavigate, Link } from "react-router-dom";
+import { ROUTER } from "../../../utils/router";
 import "./style.scss";
 
-// 2. ĐỊNH NGHĨA COMPONENT LOGINPAGE
+// ĐỊNH NGHĨA COMPONENT LOGINPAGE
 const LoginPage = () => {
-    // [Khởi tạo State]: useState("") tạo ra một biến chứa dữ liệu và một hàm để cập nhật dữ liệu đó.
-    // - email: Biến lưu trữ giá trị text mà người dùng nhập vào ô Tài khoản. Giá trị ban đầu là chuỗi rỗng "".
-    // - setEmail: Hàm dùng để cập nhật lại giá trị cho biến 'email'.
+    // Khởi tạo trạng thái (State) cho ô nhập Tài khoản/Email
+    // - email: Biến chứa dữ liệu người dùng gõ vào.
+    // - setEmail: Hàm để thay đổi dữ liệu cho biến 'email'.
     const [email, setEmail] = useState("");
 
-    // Tương tự, dùng để quản lý trạng thái của ô nhập Mật khẩu (password)
+    // Khởi tạo trạng thái (State) cho ô nhập Mật khẩu
+    // - password: Biến chứa mật khẩu.
+    // - setPassword: Hàm cập nhật mật khẩu.
     const [password, setPassword] = useState("");
 
-    // Thực thi hàm useNavigate() và gán vào biến 'navigate' để có thể gọi dùng ở các hàm bên dưới.
+    // Thực thi hook để tạo ra một đối tượng điều hướng, gán vào biến 'navigate'
     const navigate = useNavigate();
 
-    // 3. HÀM XỬ LÝ SỰ KIỆN KHI NGƯỜI DÙNG BẤM NÚT ĐĂNG NHẬP (SUBMIT FORM)
+    // HÀM XỬ LÝ SỰ KIỆN KHI NGƯỜI DÙNG NHẤN NÚT "ĐĂNG NHẬP" (Hoặc nhấn Enter trong form)
     const handleLogin = (e) => {
-        // e.preventDefault(): Lệnh cực kỳ quan trọng trong React. 
-        // Nó ngăn chặn hành vi mặc định của Form trong HTML (hành vi tự động reload/F5 lại trang khi submit).
-        // Nhờ câu lệnh này, trang web giữ nguyên trạng thái Single Page Application (SPA).
+        // e.preventDefault(): Lệnh ngăn chặn hành vi tải lại trang mặc định của thẻ <form> trong HTML.
+        // Giúp ứng dụng giữ được tính chất SPA (Single Page Application) - chạy ngầm mượt mà.
         e.preventDefault();
 
-        // [Khu vực xử lý Logic]: Nơi nhóm bạn sẽ viết code gọi API xuống Back-end (NodeJS, C#...) để kiểm tra tài khoản.
-        // Hiện tại đang Log ra console để nhóm kiểm tra xem dữ liệu lấy từ ô input đã chuẩn chưa.
+        // In ra màn hình Console dữ liệu mà người dùng đã nhập để nhóm bạn dễ kiểm tra (Debug)
         console.log("Dữ liệu gửi lên hệ thống VinaDental:", { email, password });
         
-        // Hiển thị một thông báo popup nhỏ trên màn hình cho người dùng biết
+        // Hiện thông báo popup báo thành công trên trình duyệt
         alert("Đăng nhập thành công vào hệ thống VinaDental!");
 
-        // Lệnh điều hướng: Đưa người dùng quay trở về trang chủ Mặc định "/" một cách mượt mà.
+        // Điều hướng người dùng quay trở lại màn hình Trang Chủ ("/") sau khi đăng nhập thành công
         navigate("/"); 
     };
 
-    // 4. PHẦN GIAO DIỆN COMPONENT (JSX)
+    // PHẦN DIỄN HOẠ GIAO DIỆN (JSX)
     return (
         <div className="login-container">
             <div className="login-box">
                 
-                {/* Phần tiêu đề thương hiệu */}
+                {/* Khu vực hiển thị Tên thương hiệu và thông điệp chào mừng */}
                 <div className="login-header">
                     <h2>VinaDental</h2>
                     <p>Hệ thống nha khoa kỹ thuật cao</p>
                 </div>
 
-                {/* Form Đăng nhập: Khi người dùng nhấn nút hoặc ấn Enter, sự kiện onSubmit sẽ kích hoạt hàm handleLogin */}
+                {/* Khai báo Form: Khi nhấn nút submit, form sẽ kích hoạt chạy hàm handleLogin phía trên */}
                 <form onSubmit={handleLogin}>
                     
-                    {/* Ô nhập tài khoản Email */}
+                    {/* Ô nhập liệu Tài khoản */}
                     <div className="input-group">
                         <label>Email / Số điện thoại</label>
                         <input 
                             type="text" 
                             placeholder="Nhập tài khoản..." 
-                            value={email} // Gắn biến state 'email' vào thuộc tính value để kiểm soát dữ liệu (Controlled Component)
+                            value={email} // Controlled Component: Gắn biến 'email' trực tiếp quản lý giá trị của ô input
                             
-                            // onChange: Sự kiện chạy liên tục mỗi khi người dùng gõ phím.
-                            // e.target.value: Lấy ra chính xác những gì người dùng vừa gõ.
-                            // setEmail(...): Cập nhật ngay chữ vừa gõ đó vào biến 'email' ở phía trên.
+                            // onChange: Lắng nghe liên tục thao tác gõ phím.
+                            // e.target.value: Lấy chính xác ký tự vừa gõ và nạp ngay vào hàm setEmail để cập nhật State.
                             onChange={(e) => setEmail(e.target.value)} 
-                            required // Thuộc tính HTML5 bắt buộc người dùng không được bỏ trống ô này
+                            required // Thuộc tính bắt buộc, nếu để trống form sẽ không cho submit
                         />
                     </div>
 
-                    {/* Ô nhập Mật khẩu */}
+                    {/* Ô nhập liệu Mật khẩu */}
                     <div className="input-group">
                         <label>Mật khẩu</label>
                         <input 
-                            type="password" // Ký tự nhập vào sẽ tự động biến thành dấu chấm ẩn đi để bảo mật
+                            type="password" // Biến các ký tự thành dấu chấm tròn để bảo mật, tránh lộ mật khẩu
                             placeholder="••••••••" 
-                            value={password} // Gắn biến state 'password' vào value
-                            onChange={(e) => setPassword(e.target.value)} // Cập nhật state password khi gõ phím
+                            value={password} // Kiểm soát giá trị bằng biến 'password'
+                            onChange={(e) => setPassword(e.target.value)} // Cập nhật mật khẩu khi gõ phím
                             required
                         />
                     </div>
 
-                    {/* Nút bấm Submit: Thuộc tính type="submit" giúp kích hoạt sự kiện onSubmit của thẻ <form> */}
+                    {/* Nút bấm Đăng nhập. Thuộc tính type="submit" là bắt buộc để kích hoạt sự kiện onSubmit của Form */}
                     <button type="submit" className="btn-login">Đăng Nhập</button>
                 </form>
 
-                {/* Phần chân trang Login chứa các liên kết phụ trợ */}
+                {/* Khu vực chân trang chứa các liên kết chuyển đổi */}
                 <div className="login-footer">
-                    <p>Quên mật khẩu? <span>Lấy lại tại đây</span></p>
+                    {/* Dòng liên kết hướng dẫn người dùng đăng ký tài khoản mới */}
+                    <p className="register-redirect">
+                        Chưa có tài khoản?{" "}
+                        {/* Thẻ <Link to={...}> giúp chuyển đổi mượt mà sang trang Đăng ký mà không bị load lại trang */}
+                        <Link to={ROUTER.USER.REGISTER} className="register-link">
+                            Vui lòng đăng ký tại đây
+                        </Link>
+                    </p>
+                    
+                    {/* Tính năng phụ lấy lại mật khẩu */}
+                    <p className="forgot-password">
+                        Quên mật khẩu? <span>Lấy lại tại đây</span>
+                    </p>
                 </div>
 
             </div>
@@ -97,8 +101,6 @@ const LoginPage = () => {
     );
 };
 
-// 5. EXPORT COMPONENT KẾT HỢP BỌC MEMO
-// - memo(LoginPage): Giúp đóng gói component lại. Khi component cha re-render, 
-//   nếu các giá trị dữ liệu (props) truyền vào LoginPage không đổi, React sẽ bỏ qua việc render lại trang Login này, 
-//   giúp ứng dụng chạy nhanh hơn, mượt mà hơn. Rất chuẩn chỉ cho tiêu chí chấm điểm tối ưu đồ án!
+// Đóng gói component và export ra ngoài hệ thống. 
+// Việc bọc trong hàm memo() giúp nâng cao hiệu năng render, ghi điểm tối ưu cấu trúc mã nguồn đồ án.
 export default memo(LoginPage);

@@ -4,41 +4,56 @@ import { Routes, Route } from "react-router-dom";
 import Masterlayout from "./pages/user/theme/masterlayout";
 import ProfilePage from "./pages/user/profilePage";
 import HomePage from "./pages/user/homePage";
-import LoginPage from "./pages/user/loginPage"; // Hãy đảm bảo đã import trang Login
+import LoginPage from "./pages/user/loginPage";
+import RegisterPage from "./pages/user/registerPage";
 
-// Hàm render các route của User
 const renderUserRouter = () => {
 
-    // 1. MẢNG NÀY CHỈ CHỨA CÁC TRANG CẦN HIỆN HEADER/FOOTER (Giao diện chung)
+    // NHÓM 1: Mảng chứa các trang thông thường (CẦN hiển thị Header/Footer)
     const userLayoutRouter = [
         {
             path: ROUTER.USER.HOME,
-            component: <HomePage/>
+            component: <HomePage />
         },
         {
             path: ROUTER.USER.PROFILE,
-            component: <ProfilePage/>
+            component: <ProfilePage />
+        }
+    ];
+
+    // NHÓM 2: Mảng chứa các trang độc lập (KHÔNG hiển thị Header/Footer)
+    const standaloneRouter = [
+        {
+            path: ROUTER.USER.LOGIN,
+            component: <LoginPage />
+        },
+        {
+            path: ROUTER.USER.REGISTER,
+            component: <RegisterPage />
         }
     ];
 
     return (
         <Routes>
-            {/* NHÓM 1: Các trang nằm TRONG Masterlayout (Sẽ load Header) */}
+            {/* 1. Duyệt map cho nhóm trang độc lập trước để ép chúng ăn full màn hình */}
+            {standaloneRouter.map((item, key) => (
+                <Route key={`standalone-${key}`} path={item.path} element={item.component} />
+            ))}
+
+            {/* 2. Cấu hình tất cả các trang dùng chung Masterlayout */}
+            {/* Dấu "/*" ở path giúp bọc toàn bộ các trang con bên dưới lại */}
             <Route 
-                path="/*" // Dấu /* để bắt các đường dẫn như /, /profile
+                path="/*" 
                 element={
                     <Masterlayout> 
                         <Routes> 
                             {userLayoutRouter.map((item, key) => (
-                                <Route key={key} path={item.path} element={item.component} />
+                                <Route key={`layout-${key}`} path={item.path} element={item.component} />
                             ))}
                         </Routes>
                     </Masterlayout>
                 }
             />
-
-            {/* NHÓM 2: Trang Login nằm ĐỘC LẬP bên ngoài Masterlayout (Sẽ KHÔNG load Header) */}
-            <Route path={ROUTER.USER.LOGIN} element={<LoginPage />} />
         </Routes>
     );
 };
