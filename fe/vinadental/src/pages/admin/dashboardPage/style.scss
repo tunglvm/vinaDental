@@ -1,0 +1,164 @@
+// Gọi file style tổng chứa các biến màu hệ thống của bạn
+@import "../../../style/style";
+
+// Định nghĩa màu nền gradient riêng cho Admin
+$admin-gradient: linear-gradient(135deg, #07829F 0%, #0069A5 100%);
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    // --- CẤU TRÚC SIDEBAR BÊN TRÁI ---
+    .sidebar {
+        width: 260px;
+        background: #1e293b; // Màu xám tối đậm chất admin chuyên nghiệp
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 25px 0;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+
+        .sidebar-brand {
+            padding: 0 25px;
+            margin-bottom: 40px;
+            h2 { color: #00d2ff; font-size: 24px; margin: 0; font-weight: 700; }
+            span { font-size: 12px; color: #94a3b8; }
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+
+            .menu-item {
+                padding: 14px 25px;
+                color: #cbd5e1;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 15px;
+                transition: all 0.3s;
+                border-left: 4px solid transparent;
+
+                &:hover, &.active {
+                    color: #fff;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-left-color: #00d2ff;
+                }
+            }
+        }
+
+        .sidebar-footer {
+            padding: 0 25px;
+            .btn-logout {
+                width: 100%;
+                padding: 12px;
+                background: #ef4444;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background 0.2s;
+                &:hover { background: #dc2626; }
+            }
+        }
+    }
+
+    // --- CẤU TRÚC NỘI DUNG BÊN PHẢI ---
+    .main-content {
+        flex: 1;
+        padding: 40px;
+        box-sizing: border-box;
+        overflow-y: auto;
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+
+            .welcome-text {
+                h1 { margin: 0 0 5px 0; color: #1e293b; font-size: 28px; }
+                p { margin: 0; color: #64748b; font-size: 15px; }
+            }
+
+            .admin-profile {
+                .avatar {
+                    width: 45px;
+                    height: 45px;
+                    background: $admin-gradient;
+                    color: #fff;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: bold;
+                    box-shadow: 0 4px 10px rgba(7, 130, 159, 0.3);
+                }
+            }
+        }
+
+        // Khối lưới hiển thị thẻ Stats
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+
+            .stat-card {
+                background: #fff;
+                padding: 25px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+                border-top: 4px solid #ddd;
+
+                h3 { margin: 0 0 5px 0; font-size: 30px; color: #1e293b; }
+                p { margin: 0; color: #64748b; font-size: 14px; font-weight: 500; }
+
+                &.pink { border-top-color: #ec4899; }
+                &.blue { border-top-color: #3b82f6; }
+                &.green { border-top-color: #10b981; }
+                &.orange { border-top-color: #f59e0b; }
+            }
+        }
+
+        // Cấu trúc bảng dữ liệu lịch hẹn
+        .table-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+
+            h2 { margin: 0 0 20px 0; color: #1e293b; font-size: 20px; }
+
+            .table-responsive {
+                overflow-x: auto;
+            }
+
+            .data-table {
+                width: 100%;
+                border-collapse: collapse;
+                text-align: left;
+
+                th, td { padding: 14px 16px; border-bottom: 1px solid #e2e8f0; }
+                th { background-color: #f8fafc; color: #64748b; font-weight: 600; font-size: 14px; }
+                td { color: #334155; font-size: 15px; }
+
+                tr:hover { background-color: #f8fafc; }
+
+                .badge {
+                    padding: 5px 10px;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    font-weight: 600;
+
+                    &.status-pending { background: #fef3c7; color: #d97706; }
+                    &.status-success { background: #d1fae5; color: #059669; }
+                }
+            }
+        }
+    }
+}
