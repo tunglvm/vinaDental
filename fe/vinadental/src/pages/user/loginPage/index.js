@@ -22,7 +22,7 @@ const LoginPage = () => {
             // Lưu trạng thái đăng nhập là TRUE và quyền là ADMIN vào bộ nhớ trình duyệt
             localStorage.setItem("isLogin", "true");
             localStorage.setItem("userRole", "admin");
-
+            localStorage.setItem("userName", "Quản trị viên");
             alert("Đăng nhập tài khoản Quản trị viên thành công!");
             
             // Điều hướng bay thẳng vào trang Dashboard full màn hình của Admin
@@ -33,7 +33,7 @@ const LoginPage = () => {
             // Lưu trạng thái đăng nhập là TRUE và quyền là USER thông thường
             localStorage.setItem("isLogin", "true");
             localStorage.setItem("userRole", "user");
-
+            localStorage.setItem("userName", "Nguyễn User");
             alert("Đăng nhập tài khoản Khách hàng thành công!");
             
             // Điều hướng quay trở lại trang chủ của hệ thống
