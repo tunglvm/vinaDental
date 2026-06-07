@@ -2,61 +2,78 @@
 @import "../../../../style/pages/theme";
 
 .header__top {
-    // Giữ nguyên màu nền gradient hệ thống của bạn
-    background: map.get($theme-colors, "gradient-bg"); 
-    // Thêm padding ở đây để tạo độ dày cân đối cho thanh header top
+    background: map.get($theme-colors, "gradient-bg");
     padding: 10px 0; 
 }
 
+// CẤU HÌNH CHO PHẦN BÊN TRÁI MỚI THÊM
+.header__top_left {
+    display: flex;
+    align-items: center; // Ép chữ Hotline thẳng hàng giữa theo trục dọc
+    padding: 0;
+
+    span {
+        color: #ffffff;      // Đổi chữ Hotline sang màu trắng tinh đồng bộ
+        font-size: 14px;     // Cỡ chữ bằng với cụm chữ bên phải
+        font-weight: 500;    // Độ đậm vừa phải giúp nổi bật thông tin hotline
+        letter-spacing: 0.5px; // Giãn chữ nhẹ nhìn cho chuyên nghiệp
+    }
+}
+
+// KHU VỰC BÊN PHẢI (Giữ nguyên cấu trúc flex và màu trắng đã sửa trước đó)
 .header__top_right {
     display: flex;
     justify-content: flex-end;
-    align-items: center; // Ép toàn bộ khối bên phải phải nằm chính giữa theo trục dọc
-    padding: 0; // Bỏ padding cũ ở đây để không bị lệch hàng với col-6 bên trái
+    align-items: center; 
+    padding: 0;
 
     ul {
         display: flex;
-        align-items: center; // Thẳng hàng tuyệt đối cho các thẻ li bên trong
-        column-gap: 20px;    // Tăng khoảng cách lên 20px nhìn cho thưa đều, thoáng mắt hơn
+        align-items: center; 
+        column-gap: 20px;    
         list-style: none;
         margin: 0;
         padding: 0;
 
         li {
             display: flex;
-            align-items: center; // Thẳng hàng các icon và text bên trong từng mục li
-            color: #ffffff;      // Ép màu trắng cho các đoạn text thông thường (như chữ Xin chào)
-            font-size: 14px;
+            align-items: center; 
+            color: #ffffff;      
         }
 
         a {
             font-size: 16px;
-            display: flex;       // Chuyển từ inline-block sang flex để icon và chữ trong thẻ a thẳng hàng
+            display: flex;       
             align-items: center; 
+            column-gap: 6px;     
             text-decoration: none;
-            color: #ffffff;      // Ép các thẻ Link và Icon (Facebook, Instagram, User) sang màu trắng tinh
-            transition: opacity 0.2s;
-
-            &:hover {
-                opacity: 0.8;    // Tạo hiệu ứng mờ nhẹ khi di chuột vào nút
-            }
+            color: #ffffff;      
 
             span {
-                font-size: 14px; // Chỉnh lại 14px cho cân bằng tỉ lệ với icon
-                margin-left: 5px;
-                color: #ffffff;  // Chữ "Đăng nhập" màu trắng
+                font-size: 14px; 
+                color: #ffffff;  
+                margin-left: 0;  
+            }
+
+            svg {
+                color: #ffffff;  
+                display: block;
+            }
+
+            &:hover {
+                opacity: 0.8;    
             }
         }
 
-        // Cấu trúc căn chỉnh riêng cho cụm đã đăng nhập (Đã thêm class ở bước trước)
         .user-logged-box {
             display: flex;
-            align-items: center; // Giúp Icon User, Chữ chào và Nút đăng xuất thẳng băng một hàng
-            gap: 8px;
+            align-items: center; 
+            column-gap: 8px;
             color: #ffffff;
 
             .welcome-msg {
                 color: #ffffff;
+                font-size: 14px;
                 strong {
                     font-weight: 600;
                 }
@@ -65,18 +82,18 @@
             .btn-logout-text {
                 background: none;
                 border: none;
-                color: #ffffff;  // Đồng bộ nút Đăng xuất sang màu trắng tinh tế
+                color: #ffffff;  
                 font-size: 13px;
                 font-weight: 500;
                 cursor: pointer;
                 padding: 0;
                 margin-left: 5px;
                 opacity: 0.8;
-                transition: all 0.2s;
+                transition: opacity 0.2s;
 
                 &:hover {
                     opacity: 1;
-                    text-decoration: underline; // Gạch chân nhẹ khi hover để nhận biết là nút bấm
+                    text-decoration: underline; 
                 }
             }
         }

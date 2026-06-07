@@ -15,7 +15,7 @@ const LoginPage = () => {
 
     // HÀM XỬ LÝ SỰ KIỆN KHI NGƯỜI DÙNG NHẤN NÚT ĐĂNG NHẬP
     const handleLogin = (e) => {
-        e.preventDefault(); // Ngăn hành vi load lại trang mặc định của Form HTML
+        e.preventDefault(); // Tránh load lại trang mặc định của Form HTML
 
         // TÌNH HUỐNG 1: Nếu người dùng đăng nhập bằng tài khoản Admin
         if (email === "admin@vinadental.com" && password === "admin123") {
@@ -25,7 +25,7 @@ const LoginPage = () => {
             localStorage.setItem("userName", "Quản trị viên");
             alert("Đăng nhập tài khoản Quản trị viên thành công!");
             
-            // Điều hướng bay thẳng vào trang Dashboard full màn hình của Admin
+            // Điều hướng vào trang Dashboard full màn hình của Admin
             navigate(ROUTER.ADMIN.DASHBOARD);
         } 
         // TÌNH HUỐNG 2: Nếu người dùng đăng nhập tài khoản thường (Khách hàng/Bệnh nhân)
