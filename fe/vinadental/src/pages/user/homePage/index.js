@@ -22,7 +22,7 @@ const HomePage = () => {
                     <div className="row align-items-center">
                         {/* CỘT BÊN TRÁI: Nội dung giới thiệu & Nút Đặt lịch */}
                         <div className="col-12 col-md-6 hero-text-box">
-                            <span className="sub-title">🏥 Hệ Thống Nha KhoA Kỹ Thuật Cao</span>
+                            <span className="sub-title">🏥 Hệ Thống Nha Khoa Kỹ Thuật Cao</span>
                             <h1 className="main-title">
                                 Kiến Tạo Nụ Cười <br />
                                 <span>Rạng Rỡ & Chắc Khỏe</span>
